@@ -51,10 +51,10 @@ class PHPCSRunner
     static function commands() {
         \Artisan::command('phpcs', function () {
             PHPCSRunner::check();
-        })->describe('phpcs を実行します。');
+        })->describe('Check syntax errors via PHPCS');
 
         \Artisan::command('phpcs:fix', function () {
             PHPCSRunner::fix();
-        })->describe('phpcbf を使用してコード修正を試みます。');
+        })->describe('Fix syntax errors via PHPCBF');
     }
 }
