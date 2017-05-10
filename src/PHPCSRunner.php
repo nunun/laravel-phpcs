@@ -9,12 +9,12 @@ class PHPCSRunner
      *
      * @return なし
      */
-    public static function check($artisan)
+    public static function check()
     {
         $config = PHPCSRunner::getConfig();
         system($config['php']. ' '. $config['phpcs']. ' '. $config['args'], $retval);
         if ($retval == 0) {
-            $artisan->info('エラーなし。');
+            echo('エラーなし。'. "\n");
         }
     }
 
@@ -23,7 +23,7 @@ class PHPCSRunner
      *
      * @return なし
      */
-    public static function fix($artisan)
+    public static function fix()
     {
         $config = PHPCSRunner::getConfig();
         system($config['php']. ' '. $config['phpcbf']. ' '. $config['args'], $retval);
@@ -49,12 +49,12 @@ class PHPCSRunner
      * @return なし
      */
     static function commands() {
-        Artisan::command('phpcs', function () {
-            PHPCSRunner::check($this);
+        \Artisan::command('phpcs', function () {
+            PHPCSRunner::check();
         })->describe('phpcs を実行します。');
 
-        Artisan::command('phpcs:fix', function () {
-            PHPCSRunner::fix($this);
+        \Artisan::command('phpcs:fix', function () {
+            PHPCSRunner::fix();
         })->describe('phpcbf を使用してコード修正を試みます。');
     }
 }
