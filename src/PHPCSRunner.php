@@ -11,7 +11,7 @@ class PHPCSRunner
      */
     public static function check($artisan)
     {
-        $config = LaravelPHPCS::getConfig();
+        $config = PHPCSRunner::getConfig();
         system($config['php']. ' '. $config['phpcs']. ' '. $config['args'], $retval);
         if ($retval == 0) {
             $artisan->info('エラーなし。');
@@ -25,7 +25,7 @@ class PHPCSRunner
      */
     public static function fix($artisan)
     {
-        $config = LaravelPHPCS::getConfig();
+        $config = PHPCSRunner::getConfig();
         system($config['php']. ' '. $config['phpcbf']. ' '. $config['args'], $retval);
     }
 
@@ -41,5 +41,20 @@ class PHPCSRunner
             'phpcbf' => base_path('vendor/squizlabs/php_codesniffer/scripts/phpcbf'),
             'args'   => '--standard="'. base_path('phpcs.xml'). '" --extensions=php .',
         ];
+    }
+
+    /**
+     * コマンド経路
+     *
+     * @return なし
+     */
+    static function commands() {
+        Artisan::command('phpcs', function () {
+            PHPCSRunner::check($this);
+        })->describe('phpcs を実行します。');
+
+        Artisan::command('phpcs:fix', function () {
+            PHPCSRunner::fix($this);
+        })->describe('phpcbf を使用してコード修正を試みます。');
     }
 }
