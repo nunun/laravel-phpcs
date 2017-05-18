@@ -20,7 +20,7 @@ php artisan phpcs:fix
 ## インストール
 
 
-次に開発中の Laravel アプリの composer.json に以下を記述。
+開発中の Laravel アプリの composer.json に以下を記述。
 
 ```
     "repositories": [
@@ -53,3 +53,4 @@ php artisan list
   phpcs                   Check syntax errors via PHPCS
 ...
 ```
+
