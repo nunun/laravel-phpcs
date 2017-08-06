@@ -5,13 +5,13 @@ artisan に phpcs コマンドを追加します。
 ## 使い方
 
 ```sh
-php artisan phpcs
+> php artisan phpcs
 ```
 
 phpcs\:fix  とすると、phpcbf を使ってコード修正を行います。
 
 ```sh
-php artisan phpcs:fix
+> php artisan phpcs:fix
 ```
 
 **↓まずはインストールを実施して下さい↓**
@@ -19,25 +19,13 @@ php artisan phpcs:fix
 
 ## インストール
 
-
-開発中の Laravel アプリの composer.json に以下を記述。
-
-```
-    "repositories": [
-      { "type": "vcs", "url": "http://github.com/nunun/laravel-phpcs" }
-    ],
-    "require": {
-        "nunun/laravel-phpcs": "master@dev"
-    },
-```
-
-書き終わったらパッケージ更新。
+composer からパッケージをインストール。
 
 ```sh
-composer update
+> composer require nunun/laravel-phpcs
 ```
 
-最後に config/app.php にプロバイダを書き足します。
+次に config/app.php にプロバイダを書き足します。
 
 ```
     'providers' => [
@@ -48,7 +36,7 @@ composer update
 artisan で phpcs コマンドが出てきたら、インストール完了です。
 
 ```sh
-php artisan list
+> php artisan
 ...
   phpcs                   Check syntax errors via PHPCS
 ...
